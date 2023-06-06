@@ -1,0 +1,106 @@
+using System;
+
+namespace Alg
+{
+    class Car
+    {
+        public string Id { get; set; }
+        public string Stamp { get; set; }
+        public string Colour { get; set; }
+        public string Year { get; set; }
+        public Car (string id, string stamp, string colour, string year)
+        {
+            Id = id;
+            Stamp = stamp;
+            Colour = colour;
+            Year = year;
+        }
+        public static void print_Car(Car car)
+        {
+            Console.WriteLine(" Номер: " + car.Id);
+            Console.WriteLine(" Марка: " + car.Stamp);
+            Console.WriteLine(" Цвет: " + car.Colour);
+            Console.WriteLine(" Год выпуска: " + car.Year);
+        }
+    }
+    class Driver
+    {
+        public string FIO { get; set; }
+        public string Id { get; set; }
+        public Driver(string fio, string id)
+        {
+            FIO = fio;
+            Id = id;
+        }
+        public static void print_Driver(Driver driver)
+        {
+            Console.WriteLine(" Имя владельца: " + driver.FIO);
+            Console.WriteLine(" Номер машины: "+driver.Id);
+        }
+    }
+        class Programm
+    {
+        static void Main()
+        {
+            List<Car> cars = new List<Car>();
+            cars.Add(new Car("A888AA", "Мерседес", "Белый", "2005"));
+            cars.Add(new Car("M700MM", "БМВ", "Синий", "1998"));
+            cars.Add(new Car("A029AB", "Хёндай", "Красный", "1989"));
+            cars.Add(new Car("Y946YY", "Мерседес", "Черный", "2015"));
+            cars.Add(new Car("P968JH", "Лада", "Жёльтый", "2005"));
+            cars.Add(new Car("F568MN", "Кадилак", "Зелёный", "1989"));
+            cars.Add(new Car("G432CV", "Хёндай", "Черный", "2015"));
+            cars.Add(new Car("T314RT", "Лада", "Жёлтый", "1998"));
+
+            List<Driver> drivers = new List<Driver>();
+            drivers.Add(new Driver("Сушников Иван Петрович", "M700MM"));
+            drivers.Add(new Driver("Гренадёркин Петр Иванович", "A029AB"));
+            drivers.Add(new Driver("Стародубовна Галина Евдокимовна", "G432CV"));
+            drivers.Add(new Driver("Потёмкин Валерий Юрьевич", "T314RT"));
+            Console.Write("Введите марку машин: ");
+            string stamp = Console.ReadLine();
+            var stampPost = from n in cars
+                            where n.Stamp==stamp
+                            select n ;
+            Console.WriteLine();
+            Console.WriteLine("Машины, сгруппированные " +"по марке " + stamp);
+            foreach (var c in stampPost)
+            {
+                    Car.print_Car(c);
+                    Console.WriteLine();
+            }
+
+            var fioidPost = from n in drivers
+
+                            group n by n.Id;
+            foreach (var c in fioidPost)
+            {
+                Console.WriteLine("Владельцы, сгруппированные " +
+                                "по номеру машины: " + c.Key);
+                foreach (var cr in c)
+                {
+                    Driver.print_Driver(cr);
+                    Console.WriteLine();
+                }
+                Console.WriteLine();
+                Console.WriteLine();
+            }
+
+            Console.Write("Введите фамилию владельцев: ");
+            string fioo = Console.ReadLine();
+            var fiooPost = from n in drivers
+                            where n.FIO == fioo
+                           select n;
+            Console.WriteLine();
+            Console.WriteLine("Машины, сгруппированные " + "по марке " + fioo);
+            foreach (var c in fiooPost)
+            {
+                Driver.print_Driver(c);
+                Console.WriteLine();
+            }
+
+            
+
+        }
+        }
+}
