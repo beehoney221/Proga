@@ -1,0 +1,84 @@
+namespace Alg
+{
+    class Programm
+    {
+        static void Main()
+        {
+            int[] numbers = { 11, 58, -9, -5, 6, 0, 66, 8, 0, -8, 17, -70 };
+            var num_2 = from n in numbers
+                         where n%2 == 0
+                         select n;
+            var pluss = from a in numbers
+                        where a > 0
+                        select a;
+            var not_nul = from m in numbers
+                        where m !=0
+                        select m;
+            var max_num = numbers.Max();
+            var min_num = numbers.Min();
+            Console.WriteLine("Чётные числа");
+            foreach (var p in num_2)
+            {
+                Console.Write(p + "\t");
+            }
+            Console.WriteLine();
+            Console.WriteLine("Положительные");
+            foreach (var p in pluss)
+            {
+                Console.Write(p + "\t");
+            }
+            Console.WriteLine();
+            Console.WriteLine("Не нулевые");
+            foreach (var p in not_nul)
+            {
+                Console.Write(p + "\t");
+            }
+            Console.WriteLine();
+            Console.Write("Максимальное: ");
+            Console.Write(max_num);
+            Console.WriteLine();
+            Console.Write("Минимальное: ");
+            Console.Write(min_num);
+            Console.WriteLine();
+            numbers = numbers.Where(e => e >= 0).ToArray();
+            var num_21 = from n in numbers
+                        where n % 2 == 0
+                        select n;
+            var pluss2 = from a in numbers
+                        where a > 0
+                        select a;
+            var not_nul2 = from m in numbers
+                          where m != 0
+                          select m;
+            var max_num2 = numbers.Max();
+            var min_num2 = numbers.Min();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("После удаления отрицательных");
+            foreach (var p in num_21)
+            {
+                Console.Write(p + "\t");
+            }
+            Console.WriteLine();
+            Console.WriteLine("Положительные");
+            foreach (var p in pluss2)
+            {
+                Console.Write(p + "\t");
+            }
+            Console.WriteLine();
+            Console.WriteLine("Не нулевые");
+            foreach (var p in not_nul2)
+            {
+                Console.Write(p + "\t");
+            }
+            Console.WriteLine();
+            Console.Write("Максимальное: ");
+            Console.Write(max_num2);
+            Console.WriteLine();
+            Console.Write("Минимальное: ");
+            Console.Write(min_num2);
+        }
+    }
+}
