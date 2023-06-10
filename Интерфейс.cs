@@ -71,7 +71,6 @@ namespace Inter
                         Console.WriteLine(sub.Invoke(a, b));
                         Console.ReadLine();
                         break;
-
                     case 3:
                         Console.WriteLine("> Умножение > Введите переменные");
                         Console.Write("a = ");
