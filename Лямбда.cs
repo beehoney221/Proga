@@ -1,59 +1,36 @@
 using System;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography.X509Certificates;
+
 namespace Lambda
 {
-    delegate void Del(List<double> l);
+    delegate double Del(double x, double y, double z);
+    class Lam
+    {
+        public Del max = (x, y, z) => Math.Max(x, Math.Max(y, z));
+        public Del min = (x, y, z) => Math.Min(x, Math.Min(y, z));
+        public Del sum = (x, y, z) => x + y + z;
+        public Del mult = (x, y, z) => x * y * z;
+        public Del sa = (x, y, z) => (x + y + z) / 3;
+    }
     class Program
     {
         public static void Main()
         {
-            List<double> elem = new List<double>();
-            double s = 0;
-            double um = 1;
+            Lam l = new Lam();
             Console.WriteLine("Введите три числа");
-            for (int i = 0; i < 3; i++)
-            {
-                double a = Convert.ToDouble(Console.ReadLine());
-                elem.Add(a);
-            }
-            Del min = (l) =>
-            {
-                elem.Sort();
-                Console.WriteLine(l[0]);
-            };
-            Del max = (l) =>
-            {
-                elem.Sort();
-                elem.Reverse();
-                Console.WriteLine(l[0]);
-            };
-            Del sum = (l) =>
-            {
-                foreach (double e in l)
-                {
-                    s += e;
-                }
-                Console.WriteLine(s);
-            };
-            Del pr = (l) =>
-            {
-                foreach (double p in l)
-                {
-                    um *= p;
-                }
-                Console.WriteLine(um);
-            };
-            Del sa = (l) =>
-            {
-                Console.WriteLine(s/3);
-            };
-            Console.Write("Минимальное - ");
-            min(elem);
-            Console.Write("Максимальное - ");
-            max(elem);
-            Console.Write("Сумма - ");
-            sum(elem);
-            Console.Write("Среднее арифметическое - ");
-            sa(elem);
+            Console.Write("x = ");
+            double x = Convert.ToDouble(Console.ReadLine());
+            Console.Write("y = ");
+            double y = Convert.ToDouble(Console.ReadLine());
+            Console.Write("z = ");
+            double z = Convert.ToDouble(Console.ReadLine());
+            Console.Clear();
+            Console.WriteLine("Минимальное - {0}", l.min(x, y, z));
+            Console.WriteLine("Максимальное - {0}", l.max(x, y, z));
+            Console.WriteLine("Сумма - {0}", l.sum(x, y, z));
+            Console.WriteLine("Произведение - {0}", l.mult(x, y, z));
+            Console.WriteLine("Среднее арифметическое - {0}", l.sa(x, y, z));
         }
     }
 }
